@@ -32,15 +32,15 @@ This isn't so bad. It's a little weird and confusing, but hey it's Intel's world
 
 Now what if we want to accept programs of different lengths? We need some way for the user to indicate that they're done typing. I know, we'll just put a zero on the end! Then whenever we see a zero, we'll know to stop reading the input!
 
-Here's our new and improved program that will take input of any length up to 8 characters.
+Here's our new and improved program that will take input of any length up to 4 characters.
 
 And now our computer is sufficiently close to reality to demonstrate the overflow in buffer overflow.
 
-This is where programmer error and language design conspire to make this exploit possible. Recall that we decided to mark the end of user input with a zero. Also notice that no where in our program to we check the length of the user's input to make sure it fits into the buffer we've set aside for ourselves. So what's going to happen if we input 9 characters instead of 8?
+This is where programmer error and language design conspire to make this exploit possible. Recall that we decided to mark the end of user input with a zero. Also notice that no where in our program to we check the length of the user's input to make sure it fits into the buffer we've set aside for ourselves. So what's going to happen if we input 5 characters instead of 4?
 
 The answer is that we're going to write past the end of our buffer and corrupt the next byte of our memory. Also recall that if we're in the middle of a procedure call, then the next byte represents the location of the next instruction to execute. 
 
-Let's perform a complete buffer overflow attack on this program and get it to do what we want rather than what the programmer intended. Show example.
+Let's perform a complete buffer overflow attack on this program and get it to do what we want rather than what the programmer intended.
 
 Now we can get the computer to print this annoying message. The question becomes, how does this help us to take control of the computer?
 
