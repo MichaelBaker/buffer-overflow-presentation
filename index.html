@@ -9,14 +9,16 @@
     <script type="text/javascript" charset="utf-8">
       var createProgram = function(initialValues) {
         // Required Values
-        var memory                    = initialValues["memory"]
-        var input                     = initialValues["input"]
-        var instructionPointerDisplay = initialValues["instructionPointer"]
-        var output                    = initialValues["output"]
+        var memory                    = $(initialValues["memory"] + " [data-address]")
+        var input                     = $(initialValues["input"] + " [data-input]")
+        var instructionPointerDisplay = $(initialValues["memory"] + " .ip")
+        var stackPointerDisplay       = $(initialValues["memory"] + " .sp")
+        var output                    = $(initialValues["output"])
 
         // Optional Values
         var startInstruction  = initialValues["startInstruction"]  || 0
-        var startStackPointer = initialValues["stackPointer"] || -1
+        var startStackPointer = initialValues["stackPointer"]      || -1
+        var stackReversed     = initialValues["reverseStack"]      || false
 
         var instructionPointer = startInstruction
         var stackPointer       = startStackPointer
@@ -43,9 +45,10 @@
           instructionPointerDisplay.html(address)
         }
 
-        var pushValue = function(value) {
-          stackPointer += 1
+        var push = function(value) {
+          stackReversed ? stackPointer -= 1 : stackPointer += 1
           $(memory[stackPointer]).html(value)
+          updateSP()
         }
 
         var getInstructionToken = function(offset) {
@@ -66,8 +69,14 @@
         }
 
         var clearStack = function() {
-          for(var i = startStackPointer; i <= stackPointer; i++) {
-            $(memory[i]).html("")
+          if(stackReversed) {
+            for(var i = startStackPointer; i >= stackPointer; i--) {
+              $(memory[i]).html("")
+            }
+          } else {
+            for(var i = startStackPointer; i <= stackPointer; i++) {
+              $(memory[i]).html("")
+            }
           }
         }
 
@@ -75,17 +84,23 @@
           return instructions[getInstructionToken(offset)]
         }
 
-        var popByte = function() {
+        var pop = function() {
           var value = $(memory[stackPointer]).html()
           $(memory[stackPointer]).html("")
-          stackPointer -= 1
+          stackReversed ? stackPointer += 1 : stackPointer -= 1
+          updateSP()
           return value;
+        }
+
+        var updateSP = function() {
+          stackPointerDisplay.html(stackPointer)
         }
 
         instructions.R = {
           perform: function() {
+                     console.log(input)
             var inputValue = $(input[currentInput]).html()
-            pushValue(inputValue)
+            push(inputValue)
             currentInput += 1
             secondaryHighlightByte(stackPointer)
             updateIP(instructionPointer + this.size)
@@ -113,7 +128,7 @@
         instructions.S = {
           perform: function() {
             var instructionSize = getInstruction(1).size
-            pushValue(instructionPointer + instructionSize + this.size)
+            push(instructionPointer + instructionSize + this.size)
             updateIP(instructionPointer + this.size)
           },
           size: 1
@@ -121,7 +136,7 @@
 
         instructions.F = {
           perform: function() {
-            var address = parseInt(popByte(), 10);
+            var address = parseInt(pop(), 10);
             updateIP(address)
           },
           size: 1
@@ -269,7 +284,6 @@
 
       <article>
         <table id="trolol-program-table" class="memory" style="float:left">
-          <tr> <td class="address">IP</td><td class="ip" colspan=4></td></tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -356,16 +370,14 @@
         <script type="text/javascript" charset="utf-8">
           var trololProgram = createProgram({
               startInstruction: 32,
-              memory: $("#trolol-program-table [data-address]"),
-              input:  $("#trolol-program-input [data-input]"),
-              output: $("#trolol-program-output"),
-              instructionPointer: $("#trolol-program-table .ip")})
+              memory: "#trolol-program-table",
+              input:  "#trolol-program-input",
+              output: "#trolol-program-output"})
         </script>
       </article>
 
       <article>
         <table id="notdry-program-table" class="memory" style="float:left">
-          <tr> <td class="address">IP</td><td class="ip" colspan=4></td></tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -443,16 +455,14 @@
         <script type="text/javascript" charset="utf-8">
           var notDryProgram = createProgram({
               startInstruction: 24,
-              memory: $("#notdry-program-table [data-address]"),
-              input: $("#notdry-program-input [data-input]"),
-              output: $("#notdry-program-output"),
-              instructionPointer: $("#notdry-program-table .ip")})
+              memory: "#notdry-program-table",
+              input:  "#notdry-program-input",
+              output: "#notdry-program-output"})
         </script>
       </article>
 
       <article>
         <table id="reusebad-program-table" class="memory" style="float:left">
-          <tr> <td class="address">IP</td><td class="ip" colspan=4></td></tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -530,16 +540,14 @@
         <script type="text/javascript" charset="utf-8">
           var reuseBadProgram = createProgram({
               startInstruction: 24,
-              memory: $("#reusebad-program-table [data-address]"),
-              input: $("#reusebad-program-input [data-input]"),
-              output: $("#reusebad-program-output"),
-              instructionPointer: $("#reusebad-program-table .ip")})
+              memory: "#reusebad-program-table",
+              input:  "#reusebad-program-input",
+              output: "#reusebad-program-output"})
         </script>
       </article>
 
       <article>
         <table id="reuse-program-table" class="memory" style="float:left">
-          <tr> <td class="address">IP</td><td class="ip" colspan=4></td></tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -619,10 +627,193 @@
         <script type="text/javascript" charset="utf-8">
           var reuseProgram = createProgram({
               startInstruction: 28,
-              memory: $("#reuse-program-table [data-address]"),
-              input: $("#reuse-program-input [data-input]"),
-              output: $("#reuse-program-output"),
-              instructionPointer: $("#reuse-program-table .ip")})
+              memory: "#reuse-program-table",
+              input:  "#reuse-program-input",
+              output: "#reuse-program-output"})
+        </script>
+      </article>
+
+      <article>
+        <table id="reverse-stack-program-table" class="memory" style="float:left">
+          <tr>
+            <td class="address">IP</td>
+            <td class="ip"></td>
+            <td class="address">SP</td>
+            <td class="sp"></td></tr>
+          <tr> <td class="address">0</td>
+            <td data-address=0></td>
+            <td data-address=1></td>
+            <td data-address=2></td>
+            <td data-address=3></td></tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4></td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12></td>
+            <td data-address=13></td>
+            <td data-address=14></td>
+            <td data-address=15></td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16>P</td>
+            <td data-address=17>O</td>
+            <td data-address=18>P</td>
+            <td data-address=19>K</td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>F</td>
+            <td data-address=21></td>
+            <td data-address=22></td>
+            <td data-address=23></td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28>R</td>
+            <td data-address=29>S</td>
+            <td data-address=30>G</td>
+            <td data-address=31>16</td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32>R</td>
+            <td data-address=33>S</td>
+            <td data-address=34>G</td>
+            <td data-address=35>16</td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36>R</td>
+            <td data-address=37>S</td>
+            <td data-address=38>G</td>
+            <td data-address=39>16</td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40>R</td>
+            <td data-address=41>S</td>
+            <td data-address=42>G</td>
+            <td data-address=43>16</td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p id="reverse-stack-program-input">
+            User Input: <br>
+            <span data-input=0>H</span>
+            <span data-input=1>E</span>
+            <span data-input=1>L</span>
+            <span data-input=1>O</span>
+          </p>
+          <p>
+            Output:
+            <p id="reverse-stack-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="reverseStackProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
+          <input onclick="reverseStackProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var reverseStackProgram = createProgram({
+              startInstruction: 28,
+              memory: "#reverse-stack-program-table",
+              input:  "#reverse-stack-program-input",
+              output: "#reverse-stack-program-output",
+              reverseStack: true,
+              stackPointer: 12})
+        </script>
+      </article>
+
+      <article>
+        <table id="buffer-program-table" class="memory" style="float:left">
+          <tr>
+            <td class="address">IP</td>
+            <td class="ip"></td>
+            <td class="address">SP</td>
+            <td class="sp"></td></tr>
+          <tr> <td class="address">0</td>
+            <td data-address=0></td>
+            <td data-address=1></td>
+            <td data-address=2></td>
+            <td data-address=3></td></tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4></td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12></td>
+            <td data-address=13></td>
+            <td data-address=14></td>
+            <td data-address=15></td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16>P</td>
+            <td data-address=17>O</td>
+            <td data-address=18>P</td>
+            <td data-address=19>K</td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>F</td>
+            <td data-address=21></td>
+            <td data-address=22></td>
+            <td data-address=23></td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28>R</td>
+            <td data-address=29>S</td>
+            <td data-address=30>G</td>
+            <td data-address=31>16</td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32>R</td>
+            <td data-address=33>S</td>
+            <td data-address=34>G</td>
+            <td data-address=35>16</td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36>R</td>
+            <td data-address=37>S</td>
+            <td data-address=38>G</td>
+            <td data-address=39>16</td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40>R</td>
+            <td data-address=41>S</td>
+            <td data-address=42>G</td>
+            <td data-address=43>16</td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p id="buffer-program-input">
+            User Input: <br>
+            <span data-input=0>H</span>
+            <span data-input=1>E</span>
+            <span data-input=1>L</span>
+            <span data-input=1>O</span>
+          </p>
+          <p>
+            Output:
+            <p id="buffer-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="bufferProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
+          <input onclick="bufferProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var bufferProgram = createProgram({
+              startInstruction: 28,
+              memory: "#buffer-program-table",
+              input:  "#buffer-program-input",
+              output: "#buffer-program-output",
+              reverseStack: true,
+              stackPointer: 12})
         </script>
       </article>
     </section>
