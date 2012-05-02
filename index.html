@@ -171,6 +171,11 @@
       background: white !important;
     }
 
+    .memory {
+      position: relative;
+      bottom: 25px;
+    }
+
     .memory, .memory td {
       width:  300px;
     }
@@ -192,6 +197,18 @@
 
     .secondary-highlight {
       color: blue;
+    }
+
+    .step-button {
+      position: absolute;
+      top:      25px;
+      left:     190px;
+    }
+
+    .reset-button {
+      position: absolute;
+      top:      25px;
+      left:     250px
     }
   </style>
 
@@ -284,6 +301,16 @@
 
       <article>
         <table id="trolol-program-table" class="memory" style="float:left">
+          <tr>
+            <td class="address"></td>
+            <td class="address">IP</td>
+            <td class="address">SP</td>
+          </tr>
+          <tr>
+            <td class="address"></td>
+            <td class="ip"></td>
+            <td class="sp"></td>
+          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -363,8 +390,8 @@
           </p>
         </div>
         <div>
-          <input onclick="trololProgram.step()" type="button" name="trolol-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="trololProgram.reset()" type="button" name="trolol-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="trololProgram.step()" type="button" name="trolol-program-step" value="Step" class="step-button">
+          <input onclick="trololProgram.reset()" type="button" name="trolol-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
@@ -378,6 +405,16 @@
 
       <article>
         <table id="notdry-program-table" class="memory" style="float:left">
+          <tr>
+            <td class="address"></td>
+            <td class="address">IP</td>
+            <td class="address">SP</td>
+          </tr>
+          <tr>
+            <td class="address"></td>
+            <td class="ip"></td>
+            <td class="sp"></td>
+          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -448,8 +485,8 @@
           </p>
         </div>
         <div>
-          <input onclick="notDryProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="notDryProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="notDryProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
+          <input onclick="notDryProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
@@ -463,6 +500,16 @@
 
       <article>
         <table id="reusebad-program-table" class="memory" style="float:left">
+          <tr>
+            <td class="address"></td>
+            <td class="address">IP</td>
+            <td class="address">SP</td>
+          </tr>
+          <tr>
+            <td class="address"></td>
+            <td class="ip"></td>
+            <td class="sp"></td>
+          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -533,8 +580,8 @@
           </p>
         </div>
         <div>
-          <input onclick="reuseBadProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="reuseBadProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="reuseBadProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
+          <input onclick="reuseBadProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
@@ -548,6 +595,16 @@
 
       <article>
         <table id="reuse-program-table" class="memory" style="float:left">
+          <tr>
+            <td class="address"></td>
+            <td class="address">IP</td>
+            <td class="address">SP</td>
+          </tr>
+          <tr>
+            <td class="address"></td>
+            <td class="ip"></td>
+            <td class="sp"></td>
+          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -620,8 +677,8 @@
           </p>
         </div>
         <div>
-          <input onclick="reuseProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="reuseProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="reuseProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
+          <input onclick="reuseProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
@@ -636,10 +693,15 @@
       <article>
         <table id="reverse-stack-program-table" class="memory" style="float:left">
           <tr>
+            <td class="address"></td>
             <td class="address">IP</td>
-            <td class="ip"></td>
             <td class="address">SP</td>
-            <td class="sp"></td></tr>
+          </tr>
+          <tr>
+            <td class="address"></td>
+            <td class="ip"></td>
+            <td class="sp"></td>
+          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -710,8 +772,8 @@
           </p>
         </div>
         <div>
-          <input onclick="reverseStackProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="reverseStackProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="reverseStackProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
+          <input onclick="reverseStackProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
@@ -728,10 +790,15 @@
       <article>
         <table id="buffer-program-table" class="memory" style="float:left">
           <tr>
+            <td class="address"></td>
             <td class="address">IP</td>
-            <td class="ip"></td>
             <td class="address">SP</td>
-            <td class="sp"></td></tr>
+          </tr>
+          <tr>
+            <td class="address"></td>
+            <td class="ip"></td>
+            <td class="sp"></td>
+          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -789,6 +856,7 @@
             <td data-address=43>16</td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p>B: Reserve a buffer of 4 bytes on the stack</p>
           <p id="buffer-program-input">
             User Input: <br>
             <span data-input=0>H</span>
@@ -802,8 +870,8 @@
           </p>
         </div>
         <div>
-          <input onclick="bufferProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="bufferProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="bufferProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
+          <input onclick="bufferProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
