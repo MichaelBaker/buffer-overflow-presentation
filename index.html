@@ -52,11 +52,21 @@
         }
 
         var performInstruction = function(instruction) {
-          program["instruction" + instruction]()
+          if(program["instruction" + instruction] == null){
+            program.reset()
+          } else {
+            program["instruction" + instruction]()
+          }
         }
 
         var secondaryHighlightByte = function(address) {
           $(memory[address]).addClass("secondary-highlight")
+        }
+
+        var clearStack = function() {
+          for(var i = startStackPointer; i <= stackPointer; i++) {
+            $(memory[i]).html("")
+          }
         }
 
         program.instructionR = function() {
@@ -85,7 +95,8 @@
         }
 
         program.reset = function() {
-          clearHighlights();
+          clearHighlights()
+          clearStack()
           updateIP(startInstruction)
           stackPointer = startStackPointer
           currentInput = 0
@@ -312,7 +323,7 @@
       </article>
 
       <article>
-        <table id="second-program-table" class="memory" style="float:left">
+        <table id="reuse-program-table" class="memory" style="float:left">
           <tr> <td class="address">IP</td><td class="ip" colspan=4></td></tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
@@ -345,65 +356,56 @@
             <td data-address=22></td>
             <td data-address=23></td></tr>
           <tr> <td class="address">24</td>
-            <td data-address=24></td>
-            <td data-address=25></td>
-            <td data-address=26></td>
-            <td data-address=27></td></tr>
+            <td data-address=24>R</td>
+            <td data-address=25>P</td>
+            <td data-address=26>O</td>
+            <td data-address=27>P</td></tr>
           <tr> <td class="address">28</td>
-            <td data-address=28></td>
-            <td data-address=29></td>
-            <td data-address=30></td>
-            <td data-address=31></td></tr>
+            <td data-address=28>K</td>
+            <td data-address=29>R</td>
+            <td data-address=30>P</td>
+            <td data-address=31>O</td></tr>
           <tr> <td class="address">32</td>
-            <td data-address=32>R</td>
-            <td data-address=33>R</td>
+            <td data-address=32>P</td>
+            <td data-address=33>K</td>
             <td data-address=34>R</td>
-            <td data-address=35>R</td></tr>
+            <td data-address=35>P</td></tr>
           <tr> <td class="address">36</td>
-            <td data-address=36>R</td>
-            <td data-address=37>R</td>
-            <td data-address=38>R</td>
+            <td data-address=36>O</td>
+            <td data-address=37>P</td>
+            <td data-address=38>K</td>
             <td data-address=39>R</td></tr>
           <tr> <td class="address">40</td>
-            <td data-address=40>R</td>
-            <td data-address=41>R</td>
-            <td data-address=42>G</td>
-            <td data-address=43>0</td> </tr>
+            <td data-address=40>P</td>
+            <td data-address=41>O</td>
+            <td data-address=42>P</td>
+            <td data-address=43>K</td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>R: Read a byte of user input into memory</p>
-          <p>G: Go to the address given by the next byte</p>
-          <p>P: Print the next byte to the output</p>
-          <p id="first-program-input">
+          <p id="reuse-program-input">
             User Input: <br>
-            <span data-input=0>P</span>
-            <span data-input=1>T</span>
-            <span data-input=2>P</span>
-            <span data-input=3>R</span>
-            <span data-input=4>P</span>
-            <span data-input=5>O</span>
-            <span data-input=6>P</span>
-            <span data-input=7>L</span>
-            <span data-input=8>G</span>
-            <span data-input=9>2</span>
+            <span data-input=0>H</span>
+            <span data-input=1>E</span>
+            <span data-input=1>L</span>
+            <span data-input=1>O</span>
           </p>
           <p>
             Output:
-            <p id="first-program-output"></p>
+            <p id="reuse-program-output"></p>
           </p>
         </div>
         <div>
-          <input onclick="firstProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
-          <input onclick="firstProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
+          <input onclick="reuseProgram.step()" type="button" name="first-program-step" value="Step" style="position: absolute; top: 50px; left: 190px">
+          <input onclick="reuseProgram.reset()" type="button" name="first-program-reset" value="Reset" style="position: absolute; top: 50px; left: 250px">
         </div>
 
         <script type="text/javascript" charset="utf-8">
-          var firstProgram = createProgram({
-              startInstruction: 32,
-              memory: $("#first-program-table [data-address]"),
-              input: $("#first-program-input [data-input]"),
-              output: $("#first-program-output"),
-              instructionPointer: $("#first-program-table .ip")})
+          var reuseProgram = createProgram({
+              startInstruction: 24,
+              memory: $("#reuse-program-table [data-address]"),
+              input: $("#reuse-program-input [data-input]"),
+              output: $("#reuse-program-output"),
+              instructionPointer: $("#reuse-program-table .ip")})
         </script>
       </article>
     </section>
