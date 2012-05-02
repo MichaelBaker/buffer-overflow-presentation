@@ -13,15 +13,19 @@
         var input                     = $(initialValues["input"] + " [data-input]")
         var instructionPointerDisplay = $(initialValues["memory"] + " .ip")
         var stackPointerDisplay       = $(initialValues["memory"] + " .sp")
+        var bufferPointerDisplay      = $(initialValues["memory"] + " .bp")
         var output                    = $(initialValues["output"])
 
         // Optional Values
-        var startInstruction  = initialValues["startInstruction"]  || 0
-        var startStackPointer = initialValues["stackPointer"]      || -1
-        var stackReversed     = initialValues["reverseStack"]      || false
+        var startInstruction   = initialValues["startInstruction"]  || 0
+        var startBufferPointer = initialValues["bufferPointer"]     || -1
+        var startStackPointer  = initialValues["stackPointer"]      || -1
+        var stackReversed      = initialValues["reverseStack"]      || false
 
         var instructionPointer = startInstruction
         var stackPointer       = startStackPointer
+        var bufferPointer      = startBufferPointer
+        var bufferStart        = startBufferPointer
         var currentInput       = 0
 
         var instructions = {};
@@ -80,6 +84,14 @@
           }
         }
 
+        var clearBuffer = function() {
+          if(bufferPointer >= 0) {
+            for(var i = bufferStart; i < bufferPointer; i++) {
+              $(memory[i]).html("")
+            }
+          }
+        }
+
         var getInstruction = function(offset) {
           return instructions[getInstructionToken(offset)]
         }
@@ -96,12 +108,19 @@
           stackPointerDisplay.html(stackPointer)
         }
 
+        var getNextInput = function() {
+          var inputValue = $(input[currentInput]).html()
+          currentInput += 1
+          return inputValue;
+        }
+
+        var updateBuffer = function() {
+          bufferPointerDisplay.html(bufferPointer)
+        }
+
         instructions.R = {
           perform: function() {
-                     console.log(input)
-            var inputValue = $(input[currentInput]).html()
-            push(inputValue)
-            currentInput += 1
+            push(getNextInput())
             secondaryHighlightByte(stackPointer)
             updateIP(instructionPointer + this.size)
           },
@@ -136,13 +155,32 @@
 
         instructions.F = {
           perform: function() {
-            var address = parseInt(pop(), 10);
+            var address = parseInt(pop(), 10)
             updateIP(address)
           },
           size: 1
         }
 
-        program.instruction
+        instructions.B = {
+          perform: function() {
+            bufferStart   = stackPointer - 5
+            bufferPointer = stackPointer - 5
+            updateBuffer()
+            updateIP(instructionPointer + this.size)
+          },
+          size: 1
+        }
+
+        instructions.W = {
+          perform: function() {
+            $(memory[bufferPointer]).html(getNextInput())
+            secondaryHighlightByte(bufferPointer)
+            bufferPointer += 1
+            updateBuffer()
+            updateIP(instructionPointer + this.size)
+          },
+          size: 1
+        }
 
         program.step = function() {
           clearHighlights();
@@ -153,6 +191,7 @@
         program.reset = function() {
           clearHighlights()
           clearStack()
+          clearBuffer()
           updateIP(startInstruction)
           stackPointer = startStackPointer
           currentInput = 0
@@ -793,11 +832,13 @@
             <td class="address"></td>
             <td class="address">IP</td>
             <td class="address">SP</td>
+            <td class="address">BP</td>
           </tr>
           <tr>
             <td class="address"></td>
             <td class="ip"></td>
             <td class="sp"></td>
+            <td class="bp"></td>
           </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
@@ -833,30 +874,31 @@
             <td data-address=24></td>
             <td data-address=25></td>
             <td data-address=26></td>
-            <td data-address=27></td></tr>
+            <td data-address=27>B</td></tr>
           <tr> <td class="address">28</td>
-            <td data-address=28>R</td>
+            <td data-address=28>W</td>
             <td data-address=29>S</td>
             <td data-address=30>G</td>
             <td data-address=31>16</td></tr>
           <tr> <td class="address">32</td>
-            <td data-address=32>R</td>
+            <td data-address=32>W</td>
             <td data-address=33>S</td>
             <td data-address=34>G</td>
             <td data-address=35>16</td></tr>
           <tr> <td class="address">36</td>
-            <td data-address=36>R</td>
+            <td data-address=36>W</td>
             <td data-address=37>S</td>
             <td data-address=38>G</td>
             <td data-address=39>16</td></tr>
           <tr> <td class="address">40</td>
-            <td data-address=40>R</td>
+            <td data-address=40>W</td>
             <td data-address=41>S</td>
             <td data-address=42>G</td>
             <td data-address=43>16</td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
           <p>B: Reserve a buffer of 4 bytes on the stack</p>
+          <p>W: Write the next input value into the buffer</p>
           <p id="buffer-program-input">
             User Input: <br>
             <span data-input=0>H</span>
@@ -876,7 +918,7 @@
 
         <script type="text/javascript" charset="utf-8">
           var bufferProgram = createProgram({
-              startInstruction: 28,
+              startInstruction: 27,
               memory: "#buffer-program-table",
               input:  "#buffer-program-input",
               output: "#buffer-program-output",
