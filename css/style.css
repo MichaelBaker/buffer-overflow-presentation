@@ -1,0 +1,40 @@
+article {
+  background: white !important;
+}
+
+.memory {
+  position: relative;
+}
+
+.memory, .memory td {
+  width:  300px;
+}
+
+.memory td {
+  border: 2px solid black;
+  height: 35px;
+  min-width: 35px;
+  text-align: center;
+}
+
+td.address {
+  border: white;
+}
+
+.highlight {
+  color: red;
+}
+
+.secondary-highlight {
+  color: blue;
+}
+
+.step-button {
+  position: absolute;
+  left:     190px;
+}
+
+.reset-button {
+  position: absolute;
+  left:     250px
+}

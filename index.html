@@ -4,275 +4,11 @@
     <title>Presentation</title>
 
     <meta charset='utf-8'>
-    <script src='slides.js'></script>
-    <script src='jquery.js'></script>
-    <script type="text/javascript" charset="utf-8">
-      var createProgram = function(initialValues) {
-        // Required Values
-        var memory                    = $(initialValues["memory"] + " [data-address]")
-        var input                     = $(initialValues["input"] + " [data-input]")
-        var instructionPointerDisplay = $(initialValues["memory"] + " .ip")
-        var stackPointerDisplay       = $(initialValues["memory"] + " .sp")
-        var bufferPointerDisplay      = $(initialValues["memory"] + " .bp")
-        var output                    = $(initialValues["output"])
-
-        // Optional Values
-        var startInstruction   = initialValues["startInstruction"]  || 0
-        var startBufferPointer = initialValues["bufferPointer"]     || -1
-        var startStackPointer  = initialValues["stackPointer"]      || -1
-        var stackReversed      = initialValues["reverseStack"]      || false
-
-        var instructionPointer = startInstruction
-        var stackPointer       = startStackPointer
-        var bufferPointer      = startBufferPointer
-        var bufferStart        = startBufferPointer
-        var currentInput       = 0
-
-        var instructions = {};
-        var program      = {};
-
-        var lastInput = function() {
-          return $(input[currentInput - 1]).html()
-        }
-
-        var clearHighlights = function() {
-          memory.removeClass("highlight")
-          memory.removeClass("secondary-highlight")
-          input.removeClass("highlight")
-          input.removeClass("secondary-highlight")
-        }
-
-        var highlight = function() {
-          $(memory[instructionPointer]).addClass("highlight");
-          $(input[currentInput]).addClass("secondary-highlight")
-        }
-
-        var updateIP = function(address) {
-          address = parseInt(address, 10)
-          instructionPointer = address
-          instructionPointerDisplay.html(address)
-        }
-
-        var push = function(value) {
-          stackReversed ? stackPointer -= 1 : stackPointer += 1
-          $(memory[stackPointer]).html(value)
-          updateSP()
-        }
-
-        var getInstructionToken = function(offset) {
-          offset = offset || 0
-          return $(memory[instructionPointer + offset]).html()
-        }
-
-        var performInstruction = function(instruction) {
-          if(instructions[instruction] == null){
-            program.reset()
-          } else {
-            instructions[instruction].perform()
-          }
-        }
-
-        var secondaryHighlightByte = function(address) {
-          $(memory[address]).addClass("secondary-highlight")
-        }
-
-        var clearStack = function() {
-          if(stackReversed) {
-            for(var i = startStackPointer; i >= stackPointer; i--) {
-              $(memory[i]).html("")
-            }
-          } else {
-            for(var i = startStackPointer; i <= stackPointer; i++) {
-              $(memory[i]).html("")
-            }
-          }
-        }
-
-        var clearBuffer = function() {
-          if(bufferPointer >= 0) {
-            for(var i = bufferStart; i < bufferPointer; i++) {
-              $(memory[i]).html("")
-            }
-          }
-        }
-
-        var getInstruction = function(offset) {
-          return instructions[getInstructionToken(offset)]
-        }
-
-        var pop = function() {
-          var value = $(memory[stackPointer]).html()
-          $(memory[stackPointer]).html("")
-          stackReversed ? stackPointer += 1 : stackPointer -= 1
-          updateSP()
-          return value;
-        }
-
-        var updateSP = function() {
-          stackPointerDisplay.html(stackPointer)
-        }
-
-        var getNextInput = function() {
-          var inputValue = $(input[currentInput]).html()
-          currentInput += 1
-          return inputValue;
-        }
-
-        var updateBuffer = function() {
-          bufferPointerDisplay.html(bufferPointer)
-        }
-
-        instructions.R = {
-          perform: function() {
-            push(getNextInput())
-            secondaryHighlightByte(stackPointer)
-            updateIP(instructionPointer + this.size)
-          },
-          size: 1
-        }
-
-        instructions.G = {
-          perform: function() {
-            var inputValue = $(memory[instructionPointer + 1]).html()
-            updateIP(inputValue)
-          },
-          size: 2
-        }
-
-        instructions.P = {
-          perform: function() {
-            outputValue = $(memory[instructionPointer + 1]).html()
-            output.append($("<span>").html(outputValue))
-            updateIP(instructionPointer + this.size)
-          },
-          size: 2
-        }
-
-        instructions.S = {
-          perform: function() {
-            var instructionSize = getInstruction(1).size
-            push(instructionPointer + instructionSize + this.size)
-            updateIP(instructionPointer + this.size)
-          },
-          size: 1
-        }
-
-        instructions.F = {
-          perform: function() {
-            var address = parseInt(pop(), 10)
-            updateIP(address)
-          },
-          size: 1
-        }
-
-        instructions.B = {
-          perform: function() {
-            bufferStart   = stackPointer - 5
-            bufferPointer = stackPointer - 5
-            updateBuffer()
-            updateIP(instructionPointer + this.size)
-          },
-          size: 1
-        }
-
-        instructions.W = {
-          perform: function() {
-            $(memory[bufferPointer]).html(getNextInput())
-            secondaryHighlightByte(bufferPointer)
-            bufferPointer += 1
-            updateBuffer()
-            updateIP(instructionPointer + this.size)
-          },
-          size: 1
-        }
-
-        instructions.Z = {
-          perform: function(){
-            if(lastInput() === "0") {
-              updateIP(getInstructionToken(1))
-            } else {
-              updateIP(instructionPointer + this.size)
-            }
-          },
-          size: 2
-        }
-
-        program.setInput = function(selector) {
-          input = $(initialValues["input"] + " [data-input]")
-        }
-
-        program.step = function() {
-          clearHighlights();
-          highlight();
-          performInstruction(getInstructionToken())
-        }
-
-        program.reset = function() {
-          clearHighlights()
-          clearStack()
-          clearBuffer()
-          updateIP(startInstruction)
-          stackPointer = startStackPointer
-          bufferPointer = startBufferPointer
-          updateSP()
-          updateBuffer()
-          currentInput = 0
-          output.html("")
-        }
-
-        program.reset()
-        return program
-      }
-    </script>
+    <script src='javascript/slides.js'></script>
+    <script src='javascript/jquery.js'></script>
+    <script src='javascript/program.js'></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
   </head>
-
-  <style>
-    /* Your individual styles here, or just use inline styles if that’s
-       what you want. */
-    article {
-      background: white !important;
-    }
-
-    .memory {
-      position: relative;
-      bottom: 25px;
-    }
-
-    .memory, .memory td {
-      width:  300px;
-    }
-
-    .memory td {
-      border: 2px solid black;
-      height: 35px;
-      min-width: 35px;
-      text-align: center;
-    }
-
-    td.address {
-      border: white;
-    }
-
-    .highlight {
-      color: red;
-    }
-
-    .secondary-highlight {
-      color: blue;
-    }
-
-    .step-button {
-      position: absolute;
-      top:      25px;
-      left:     190px;
-    }
-
-    .reset-button {
-      position: absolute;
-      top:      25px;
-      left:     250px
-    }
-  </style>
 
   <body style='display: none'>
     <section class='slides layout-regular template-default'>
@@ -294,8 +30,7 @@
       </article>
 
       <article>
-        <table class="memory" style="display: block; margin: auto">
-          <tr> <td class="address">IP</td><td colspan=4></td></tr>
+        <table class="memory" style="position:relative; top: 50px; display: block; margin: auto">
           <tr> <td class="address">0</td> <td class="highlight">A</td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">4</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">8</td> <td></td> <td></td> <td></td> <td></td> </tr>
@@ -311,8 +46,7 @@
       </article>
 
       <article>
-        <table class="memory" style="display: block; margin: auto">
-          <tr> <td class="address">IP</td><td colspan=4></td></tr>
+        <table class="memory" style="position:relative; top: 50px; display: block; margin: auto">
           <tr> <td class="address">0</td> <td class="highlight">65</td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">4</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">8</td> <td></td> <td></td> <td></td> <td></td> </tr>
@@ -328,26 +62,8 @@
       </article>
 
       <article>
-        <table class="memory" style="display: block; margin: auto">
-          <tr> <td class="address">IP</td><td colspan=4>0</td></tr>
-          <tr> <td class="address">0</td> <td class="highlight">i4</td> <td>i5</td> <td></td> <td></td> </tr>
-          <tr> <td class="address">4</td> <td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">8</td> <td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">12</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">16</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">20</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">24</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">28</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">32</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">36</td><td></td> <td></td> <td></td> <td></td> </tr>
-          <tr> <td class="address">40</td><td></td> <td></td> <td></td> <td></td> </tr>
-        </table>
-      </article>
-
-      <article>
-        <table class="memory" style="display: block; margin: auto">
-          <tr> <td class="address">IP</td><td colspan=4>1</td></tr>
-          <tr> <td class="address">0</td> <td>i4</td> <td class="highlight">i5</td> <td></td> <td></td> </tr>
+        <table class="memory" style="position:relative; top: 50px; display: block; margin: auto">
+          <tr> <td class="address">0</td> <td>i4</td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">4</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">8</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">12</td><td></td> <td></td> <td></td> <td></td> </tr>
@@ -363,16 +79,6 @@
 
       <article>
         <table id="trolol-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-          </tr>
           <tr> <td class="address">0</td>
             <td data-address=0></td>
             <td data-address=1></td>
@@ -444,7 +150,7 @@
             <span data-input=6>P</span>
             <span data-input=7>L</span>
             <span data-input=8>G</span>
-            <span data-input=9>2</span>
+            <span data-input=9>4</span>
           </p>
           <p>
             Output:
@@ -1371,6 +1077,12 @@
 
       <article>
         <img src="images/suid.png" style="display:block; margin:auto; position: relative; top:175px">
+      </article>
+
+      <article>
+        <p>Microsoft IIS - Code Red</p>
+        <p>fingerd - The Morris Worm of 1988</p>
+        <p>SQL Server - SQLSlammer</p>
       </article>
     </section>
   </body>
