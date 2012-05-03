@@ -136,7 +136,7 @@
             <td data-address=43></td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>P: Print a byte to the output</p>
+          <p>Px: Print x</p>
           <p id="print-program-input"></p>
           <p>
             Output:
@@ -245,32 +245,32 @@
       </article>
 
       <article>
-        <table id="trolol-program-table" class="memory" style="float:left">
+        <table id="notdry-program-table" class="memory" style="float:left">
           <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
+            <td data-address=0>R</td>
+            <td data-address=1>P</td>
+            <td data-address=2>O</td>
+            <td data-address=3>P</td> </tr>
           <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
+            <td data-address=4>K</td>
+            <td data-address=5>R</td>
+            <td data-address=6>P</td>
+            <td data-address=7>O</td></tr>
           <tr> <td class="address">8</td>
-            <td data-address=8></td>
-            <td data-address=9></td>
-            <td data-address=10></td>
-            <td data-address=11></td></tr>
+            <td data-address=8>P</td>
+            <td data-address=9>K</td>
+            <td data-address=10>R</td>
+            <td data-address=11>P</td></tr>
           <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
+            <td data-address=12>O</td>
+            <td data-address=13>P</td>
+            <td data-address=14>K</td>
+            <td data-address=15>R</td></tr>
           <tr> <td class="address">16</td>
-            <td data-address=16></td>
-            <td data-address=17></td>
-            <td data-address=18></td>
-            <td data-address=19></td></tr>
+            <td data-address=16>P</td>
+            <td data-address=17>O</td>
+            <td data-address=18>P</td>
+            <td data-address=19>K</td></tr>
           <tr> <td class="address">20</td>
             <td data-address=20></td>
             <td data-address=21></td>
@@ -287,209 +287,10 @@
             <td data-address=30></td>
             <td data-address=31></td></tr>
           <tr> <td class="address">32</td>
-            <td data-address=32>R</td>
-            <td data-address=33>R</td>
-            <td data-address=34>R</td>
-            <td data-address=35>R</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>R</td>
-            <td data-address=37>R</td>
-            <td data-address=38>R</td>
-            <td data-address=39>R</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>R</td>
-            <td data-address=41>R</td>
-            <td data-address=42>G</td>
-            <td data-address=43>0</td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>R: Read a byte of user input into memory</p>
-          <p>G: Go to the address given by the next byte</p>
-          <p>P: Print the next byte to the output</p>
-          <p id="trolol-program-input">
-            User Input: <br>
-            <span data-input=0>P</span>
-            <span data-input=1>T</span>
-            <span data-input=2>P</span>
-            <span data-input=3>R</span>
-            <span data-input=4>P</span>
-            <span data-input=5>O</span>
-            <span data-input=6>P</span>
-            <span data-input=7>L</span>
-            <span data-input=8>G</span>
-            <span data-input=9>4</span>
-          </p>
-          <p>
-            Output:
-            <p id="trolol-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="trololProgram.step()" type="button" name="trolol-program-step" value="Step" class="step-button">
-          <input onclick="trololProgram.reset()" type="button" name="trolol-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var trololProgram = createProgram({
-              startInstruction: 32,
-              memory: "#trolol-program-table",
-              input:  "#trolol-program-input",
-              output: "#trolol-program-output"})
-        </script>
-      </article>
-
-      <article>
-        <table id="notdry-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8></td>
-            <td data-address=9></td>
-            <td data-address=10></td>
-            <td data-address=11></td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16></td>
-            <td data-address=17></td>
-            <td data-address=18></td>
-            <td data-address=19></td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20></td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24>R</td>
-            <td data-address=25>P</td>
-            <td data-address=26>O</td>
-            <td data-address=27>P</td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>K</td>
-            <td data-address=29>R</td>
-            <td data-address=30>P</td>
-            <td data-address=31>O</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>P</td>
-            <td data-address=33>K</td>
-            <td data-address=34>R</td>
-            <td data-address=35>P</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>O</td>
-            <td data-address=37>P</td>
-            <td data-address=38>K</td>
-            <td data-address=39>R</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>P</td>
-            <td data-address=41>O</td>
-            <td data-address=42>P</td>
-            <td data-address=43>K</td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p id="notdry-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
-            <span data-input=1>E</span>
-            <span data-input=1>L</span>
-            <span data-input=1>O</span>
-          </p>
-          <p>
-            Output:
-            <p id="notdry-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="notDryProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="notDryProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var notDryProgram = createProgram({
-              startInstruction: 24,
-              memory: "#notdry-program-table",
-              input:  "#notdry-program-input",
-              output: "#notdry-program-output"})
-        </script>
-      </article>
-
-      <article>
-        <table id="reusebad-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8></td>
-            <td data-address=9></td>
-            <td data-address=10></td>
-            <td data-address=11></td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16>P</td>
-            <td data-address=17>O</td>
-            <td data-address=18>P</td>
-            <td data-address=19>K</td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20></td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24>R</td>
-            <td data-address=25>G</td>
-            <td data-address=26>16</td>
-            <td data-address=27>R</td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>G</td>
-            <td data-address=29>16</td>
-            <td data-address=30>R</td>
-            <td data-address=31>G</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>16</td>
-            <td data-address=33>R</td>
-            <td data-address=34>G</td>
-            <td data-address=35>16</td></tr>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
           <tr> <td class="address">36</td>
             <td data-address=36></td>
             <td data-address=37></td>
@@ -502,59 +303,50 @@
             <td data-address=43></td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p id="reusebad-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
+          <p id="notdry-program-input">
+            Input:
+            <span data-input=0>Y</span>
             <span data-input=1>E</span>
-            <span data-input=1>L</span>
-            <span data-input=1>O</span>
+            <span data-input=2>O</span>
+            <span data-input=3>P</span>
           </p>
           <p>
             Output:
-            <p id="reusebad-program-output"></p>
+            <p id="notdry-program-output"></p>
           </p>
         </div>
         <div>
-          <input onclick="reuseBadProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="reuseBadProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
+          <input onclick="notdryProgram.step()" type="button" name="notdry-program-step" value="Step" class="step-button">
+          <input onclick="notdryProgram.reset()" type="button" name="notdry-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
-          var reuseBadProgram = createProgram({
-              startInstruction: 24,
-              memory: "#reusebad-program-table",
-              input:  "#reusebad-program-input",
-              output: "#reusebad-program-output"})
+          var notdryProgram = createProgram({
+              startInstruction: 0,
+              memory: "#notdry-program-table",
+              input:  "#notdry-program-input",
+              output: "#notdry-program-output",
+              bufferPointer: 36})
         </script>
       </article>
 
       <article>
-        <table id="reuse-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-          </tr>
+        <table id="dry-program-table" class="memory" style="float:left">
           <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
+            <td data-address=0>R</td>
+            <td data-address=1>G</td>
+            <td data-address=2>16</td>
+            <td data-address=3>R</td> </tr>
           <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
+            <td data-address=4>G</td>
+            <td data-address=5>16</td>
+            <td data-address=6>R</td>
+            <td data-address=7>G</td></tr>
           <tr> <td class="address">8</td>
-            <td data-address=8></td>
-            <td data-address=9></td>
-            <td data-address=10></td>
-            <td data-address=11></td></tr>
+            <td data-address=8>16</td>
+            <td data-address=9>R</td>
+            <td data-address=10>G</td>
+            <td data-address=11>16</td></tr>
           <tr> <td class="address">12</td>
             <td data-address=12></td>
             <td data-address=13></td>
@@ -566,7 +358,7 @@
             <td data-address=18>P</td>
             <td data-address=19>K</td></tr>
           <tr> <td class="address">20</td>
-            <td data-address=20>F</td>
+            <td data-address=20></td>
             <td data-address=21></td>
             <td data-address=22></td>
             <td data-address=23></td></tr>
@@ -576,551 +368,54 @@
             <td data-address=26></td>
             <td data-address=27></td></tr>
           <tr> <td class="address">28</td>
-            <td data-address=28>R</td>
-            <td data-address=29>S</td>
-            <td data-address=30>G</td>
-            <td data-address=31>16</td></tr>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
           <tr> <td class="address">32</td>
-            <td data-address=32>R</td>
-            <td data-address=33>S</td>
-            <td data-address=34>G</td>
-            <td data-address=35>16</td></tr>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
           <tr> <td class="address">36</td>
-            <td data-address=36>R</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
           <tr> <td class="address">40</td>
-            <td data-address=40>R</td>
-            <td data-address=41>S</td>
-            <td data-address=42>G</td>
-            <td data-address=43>16</td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>S: Save the next address instruction onto the stack</p>
-          <p>F: Fetch the thing on the top of the stack and put it in the instruction pointer</p>
-          <p id="reuse-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
-            <span data-input=1>E</span>
-            <span data-input=1>L</span>
-            <span data-input=1>O</span>
-          </p>
-          <p>
-            Output:
-            <p id="reuse-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="reuseProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="reuseProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var reuseProgram = createProgram({
-              startInstruction: 28,
-              memory: "#reuse-program-table",
-              input:  "#reuse-program-input",
-              output: "#reuse-program-output"})
-        </script>
-      </article>
-
-      <article>
-        <table id="reverse-stack-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8></td>
-            <td data-address=9></td>
-            <td data-address=10></td>
-            <td data-address=11></td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16>P</td>
-            <td data-address=17>O</td>
-            <td data-address=18>P</td>
-            <td data-address=19>K</td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20>F</td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24></td>
-            <td data-address=25></td>
-            <td data-address=26></td>
-            <td data-address=27></td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>R</td>
-            <td data-address=29>S</td>
-            <td data-address=30>G</td>
-            <td data-address=31>16</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>R</td>
-            <td data-address=33>S</td>
-            <td data-address=34>G</td>
-            <td data-address=35>16</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>R</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>R</td>
-            <td data-address=41>S</td>
-            <td data-address=42>G</td>
-            <td data-address=43>16</td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p id="reverse-stack-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
-            <span data-input=1>E</span>
-            <span data-input=1>L</span>
-            <span data-input=1>O</span>
-          </p>
-          <p>
-            Output:
-            <p id="reverse-stack-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="reverseStackProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="reverseStackProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var reverseStackProgram = createProgram({
-              startInstruction: 28,
-              memory: "#reverse-stack-program-table",
-              input:  "#reverse-stack-program-input",
-              output: "#reverse-stack-program-output",
-              reverseStack: true,
-              stackPointer: 12})
-        </script>
-      </article>
-
-      <article>
-        <table id="buffer-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-            <td class="address">BP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-            <td class="bp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8></td>
-            <td data-address=9></td>
-            <td data-address=10></td>
-            <td data-address=11></td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16>P</td>
-            <td data-address=17>O</td>
-            <td data-address=18>P</td>
-            <td data-address=19>K</td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20>F</td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24></td>
-            <td data-address=25></td>
-            <td data-address=26></td>
-            <td data-address=27>B</td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>W</td>
-            <td data-address=29>S</td>
-            <td data-address=30>G</td>
-            <td data-address=31>16</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>W</td>
-            <td data-address=33>S</td>
-            <td data-address=34>G</td>
-            <td data-address=35>16</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>W</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>W</td>
-            <td data-address=41>S</td>
-            <td data-address=42>G</td>
-            <td data-address=43>16</td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>B: Reserve a buffer of 4 bytes on the stack</p>
-          <p>W: Write the next input value into the buffer</p>
-          <p id="buffer-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
-            <span data-input=1>E</span>
-            <span data-input=1>L</span>
-            <span data-input=1>O</span>
-          </p>
-          <p>
-            Output:
-            <p id="buffer-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="bufferProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="bufferProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var bufferProgram = createProgram({
-              startInstruction: 27,
-              memory: "#buffer-program-table",
-              input:  "#buffer-program-input",
-              output: "#buffer-program-output",
-              reverseStack: true,
-              stackPointer: 9})
-        </script>
-      </article>
-
-      <article>
-        <table id="zero-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-            <td class="address">BP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-            <td class="bp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8>P</td>
-            <td data-address=9>O</td>
-            <td data-address=10>P</td>
-            <td data-address=11>K</td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16>W</td>
-            <td data-address=17>Z</td>
-            <td data-address=18>8</td>
-            <td data-address=19>F</td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20></td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24>B</td>
-            <td data-address=25>S</td>
-            <td data-address=26>G</td>
-            <td data-address=27>16</td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>S</td>
-            <td data-address=29>G</td>
-            <td data-address=30>16</td>
-            <td data-address=31>S</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>G</td>
-            <td data-address=33>16</td>
-            <td data-address=34>S</td>
-            <td data-address=35>G</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>16</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>S</td>
-            <td data-address=41>G</td>
-            <td data-address=42>16</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
             <td data-address=43></td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>Zx: Jump to x if the last input was a zero</p>
-          <p id="zero-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
-            <span data-input=1>I</span>
-            <span data-input=2>0</span>
+          <p>
+            Gx: Goto x
+          </p>
+          <p id="dry-program-input">
+            Input:
+            <span data-input=0>Y</span>
+            <span data-input=1>E</span>
+            <span data-input=2>O</span>
+            <span data-input=3>P</span>
           </p>
           <p>
             Output:
-            <p id="zero-program-output"></p>
+            <p id="dry-program-output"></p>
           </p>
         </div>
         <div>
-          <input onclick="zeroProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="zeroProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
+          <input onclick="dryProgram.step()" type="button" name="dry-program-step" value="Step" class="step-button">
+          <input onclick="dryProgram.reset()" type="button" name="dry-program-reset" value="Reset" class="reset-button">
         </div>
 
         <script type="text/javascript" charset="utf-8">
-          var zeroProgram = createProgram({
-              startInstruction: 24,
-              memory: "#zero-program-table",
-              input:  "#zero-program-input",
-              output: "#zero-program-output",
-              reverseStack: true,
-              stackPointer: 5})
-        </script>
-      </article>
-
-      <article>
-        <table id="seg-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-            <td class="address">BP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-            <td class="bp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8>P</td>
-            <td data-address=9>O</td>
-            <td data-address=10>P</td>
-            <td data-address=11>K</td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16>W</td>
-            <td data-address=17>Z</td>
-            <td data-address=18>8</td>
-            <td data-address=19>F</td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20></td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24>B</td>
-            <td data-address=25>S</td>
-            <td data-address=26>G</td>
-            <td data-address=27>16</td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>S</td>
-            <td data-address=29>G</td>
-            <td data-address=30>16</td>
-            <td data-address=31>S</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>G</td>
-            <td data-address=33>16</td>
-            <td data-address=34>S</td>
-            <td data-address=35>G</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>16</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>S</td>
-            <td data-address=41>G</td>
-            <td data-address=42>16</td>
-            <td data-address=43></td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p id="seg-program-input">
-            User Input: <br>
-            <span data-input=0>H</span>
-            <span data-input=1>I</span>
-            <span data-input=2>T</span>
-            <span data-input=3>H</span>
-            <span data-input=4>E</span>
-            <span data-input=5>R</span>
-            <span data-input=6>E</span>
-          </p>
-          <p>
-            Output:
-            <p id="seg-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="segProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="segProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var segProgram = createProgram({
-              startInstruction: 24,
-              memory: "#seg-program-table",
-              input:  "#seg-program-input",
-              output: "#seg-program-output",
-              reverseStack: true,
-              stackPointer: 5})
-        </script>
-      </article>
-
-      <article>
-        <table id="overflow-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-            <td class="address">BP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-            <td class="bp"></td>
-          </tr>
-          <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
-          <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
-          <tr> <td class="address">8</td>
-            <td data-address=8>P</td>
-            <td data-address=9>O</td>
-            <td data-address=10>P</td>
-            <td data-address=11>K</td></tr>
-          <tr> <td class="address">12</td>
-            <td data-address=12></td>
-            <td data-address=13></td>
-            <td data-address=14></td>
-            <td data-address=15></td></tr>
-          <tr> <td class="address">16</td>
-            <td data-address=16>W</td>
-            <td data-address=17>Z</td>
-            <td data-address=18>8</td>
-            <td data-address=19>F</td></tr>
-          <tr> <td class="address">20</td>
-            <td data-address=20></td>
-            <td data-address=21></td>
-            <td data-address=22></td>
-            <td data-address=23></td></tr>
-          <tr> <td class="address">24</td>
-            <td data-address=24>B</td>
-            <td data-address=25>S</td>
-            <td data-address=26>G</td>
-            <td data-address=27>16</td></tr>
-          <tr> <td class="address">28</td>
-            <td data-address=28>S</td>
-            <td data-address=29>G</td>
-            <td data-address=30>16</td>
-            <td data-address=31>S</td></tr>
-          <tr> <td class="address">32</td>
-            <td data-address=32>G</td>
-            <td data-address=33>16</td>
-            <td data-address=34>S</td>
-            <td data-address=35>G</td></tr>
-          <tr> <td class="address">36</td>
-            <td data-address=36>16</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
-          <tr> <td class="address">40</td>
-            <td data-address=40>S</td>
-            <td data-address=41>G</td>
-            <td data-address=42>16</td>
-            <td data-address=43></td> </tr>
-        </table>
-        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p id="overflow-program-input">
-            User Input: <br>
-            <span data-input=0>_</span>
-            <span data-input=1>P</span>
-            <span data-input=2>X</span>
-            <span data-input=3>_</span>
-            <span data-input=4>1</span>
-          </p>
-          <p>
-            Output:
-            <p id="overflow-program-output"></p>
-          </p>
-        </div>
-        <div>
-          <input onclick="overflowProgram.step()" type="button" name="first-program-step" value="Step" class="step-button">
-          <input onclick="overflowProgram.reset()" type="button" name="first-program-reset" value="Reset" class="reset-button">
-        </div>
-
-        <script type="text/javascript" charset="utf-8">
-          var overflowProgram = createProgram({
-              startInstruction: 24,
-              memory: "#overflow-program-table",
-              input:  "#overflow-program-input",
-              output: "#overflow-program-output",
-              reverseStack: true,
-              stackPointer: 5})
+          var dryProgram = createProgram({
+              startInstruction: 0,
+              memory: "#dry-program-table",
+              input:  "#dry-program-input",
+              output: "#dry-program-output",
+              bufferPointer: 36})
         </script>
       </article>
 
