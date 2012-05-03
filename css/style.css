@@ -22,11 +22,13 @@ td.address {
 }
 
 .highlight {
-  color: red;
+  background-color: red;
+  color: white;
 }
 
 .secondary-highlight {
-  color: blue;
+  background-color: blue;
+  color: white;
 }
 
 .step-button {

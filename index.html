@@ -31,7 +31,7 @@
 
       <article>
         <table class="memory" style="position:relative; top: 50px; display: block; margin: auto">
-          <tr> <td class="address">0</td> <td class="highlight">A</td> <td></td> <td></td> <td></td> </tr>
+          <tr> <td class="address">0</td> <td>A</td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">4</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">8</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">12</td><td></td> <td></td> <td></td> <td></td> </tr>
@@ -47,7 +47,7 @@
 
       <article>
         <table class="memory" style="position:relative; top: 50px; display: block; margin: auto">
-          <tr> <td class="address">0</td> <td class="highlight">65</td> <td></td> <td></td> <td></td> </tr>
+          <tr> <td class="address">0</td> <td>65</td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">4</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">8</td> <td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">12</td><td></td> <td></td> <td></td> <td></td> </tr>
@@ -75,6 +75,173 @@
           <tr> <td class="address">36</td><td></td> <td></td> <td></td> <td></td> </tr>
           <tr> <td class="address">40</td><td></td> <td></td> <td></td> <td></td> </tr>
         </table>
+      </article>
+
+      <article>
+        <table id="print-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>P</td>
+            <td data-address=1>Y</td>
+            <td data-address=0>P</td>
+            <td data-address=1>_</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=2>P</td>
+            <td data-address=3>H</td>
+            <td data-address=4>P</td>
+            <td data-address=5>E</td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=6>P</td>
+            <td data-address=7>L</td>
+            <td data-address=8>P</td>
+            <td data-address=9>O</td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=10>P</td>
+            <td data-address=11>_</td>
+            <td data-address=12>P</td>
+            <td data-address=13>T</td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=14>P</td>
+            <td data-address=15>H</td>
+            <td data-address=16>P</td>
+            <td data-address=17>A</td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=18>P</td>
+            <td data-address=19>R</td>
+            <td data-address=20></td>
+            <td data-address=23></td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p>P: Print a byte to the output</p>
+          <p id="print-program-input"></p>
+          <p>
+            Output:
+            <p id="print-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="printProgram.step()" type="button" name="print-program-step" value="Step" class="step-button">
+          <input onclick="printProgram.reset()" type="button" name="print-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var printProgram = createProgram({
+              startInstruction: 0,
+              memory: "#print-program-table",
+              input:  "#print-program-input",
+              output: "#print-program-output"})
+        </script>
+      </article>
+
+      <article>
+        <table id="read-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>R</td>
+            <td data-address=1>R</td>
+            <td data-address=2>R</td>
+            <td data-address=3>R</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4></td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12></td>
+            <td data-address=13></td>
+            <td data-address=14></td>
+            <td data-address=15></td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20></td>
+            <td data-address=21></td>
+            <td data-address=22></td>
+            <td data-address=23></td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p>R: Read a byte into memory</p>
+          <p id="read-program-input">
+            Input:
+            <span data-input=0>Y</span>
+            <span data-input=1>E</span>
+            <span data-input=2>O</span>
+            <span data-input=3>P</span>
+          </p>
+          <p>
+            Output:
+            <p id="read-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="readProgram.step()" type="button" name="read-program-step" value="Step" class="step-button">
+          <input onclick="readProgram.reset()" type="button" name="read-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var readProgram = createProgram({
+              startInstruction: 0,
+              memory: "#read-program-table",
+              input:  "#read-program-input",
+              output: "#read-program-output",
+              bufferPointer: 36})
+        </script>
       </article>
 
       <article>

@@ -34,7 +34,9 @@ var createProgram = function(initialValues) {
   }
 
   var highlight = function() {
-    $(memory[instructionPointer]).addClass("highlight");
+    for(var i = 0; i < getInstruction().size; i++) {
+      $(memory[instructionPointer + i]).addClass("highlight");
+    }
     $(input[currentInput]).addClass("secondary-highlight")
   }
 
@@ -53,14 +55,6 @@ var createProgram = function(initialValues) {
   var getInstructionToken = function(offset) {
     offset = offset || 0
     return $(memory[instructionPointer + offset]).html()
-  }
-
-  var performInstruction = function(instruction) {
-    if(instructions[instruction] == null){
-      program.reset()
-    } else {
-      instructions[instruction].perform()
-    }
   }
 
   var secondaryHighlightByte = function(address) {
@@ -113,15 +107,6 @@ var createProgram = function(initialValues) {
     bufferPointerDisplay.html(bufferPointer)
   }
 
-  instructions.R = {
-    perform: function() {
-      push(getNextInput())
-      secondaryHighlightByte(stackPointer)
-      updateIP(instructionPointer + this.size)
-    },
-    size: 1
-  }
-
   instructions.G = {
     perform: function() {
       var inputValue = $(memory[instructionPointer + 1]).html()
@@ -156,17 +141,7 @@ var createProgram = function(initialValues) {
     size: 1
   }
 
-  instructions.B = {
-    perform: function() {
-      bufferStart   = stackPointer - 5
-      bufferPointer = stackPointer - 5
-      updateBuffer()
-      updateIP(instructionPointer + this.size)
-    },
-    size: 1
-  }
-
-  instructions.W = {
+  instructions.R = {
     perform: function() {
       $(memory[bufferPointer]).html(getNextInput())
       secondaryHighlightByte(bufferPointer)
@@ -193,9 +168,14 @@ var createProgram = function(initialValues) {
   }
 
   program.step = function() {
-    clearHighlights();
-    highlight();
-    performInstruction(getInstructionToken())
+    var instruction = getInstructionToken()
+    if(instructions[instruction] == null){
+      program.reset()
+    } else {
+      clearHighlights();
+      highlight();
+      instructions[instruction].perform()
+    }
   }
 
   program.reset = function() {
