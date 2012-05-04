@@ -26,11 +26,17 @@ var createProgram = function(initialValues) {
     return $(input[currentInput - 1]).html()
   }
 
-  var clearHighlights = function() {
-    memory.removeClass("highlight")
-    memory.removeClass("secondary-highlight")
-    input.removeClass("highlight")
-    input.removeClass("secondary-highlight")
+  var clearHighlights = function(address) {
+    if(address == null) {
+      memory.removeClass("highlight")
+      memory.removeClass("secondary-highlight")
+      input.removeClass("highlight")
+      input.removeClass("secondary-highlight")
+    } else {
+      $(memory[address]).removeClass("highlight")
+      $(memory[address]).removeClass("secondary-highlight")
+      $(memory[address]).removeClass("tertiary-highlight")
+    }
   }
 
   var highlight = function() {
@@ -60,6 +66,10 @@ var createProgram = function(initialValues) {
   var secondaryHighlightByte = function(address) {
     $(memory[address]).addClass("secondary-highlight")
   }
+
+  var tertiaryHighlight = function(address) {
+    $(memory[address]).addClass("tertiary-highlight")
+  };
 
   var clearStack = function() {
     if(stackReversed) {
@@ -129,14 +139,19 @@ var createProgram = function(initialValues) {
       var instructionSize = getInstruction(1).size
       push(instructionPointer + instructionSize + this.size)
       updateIP(instructionPointer + this.size)
+      tertiaryHighlight(stackPointer)
     },
     size: 1
   }
 
   instructions.F = {
     perform: function() {
+      clearHighlights(stackPointer)
       var address = parseInt(pop(), 10)
       updateIP(address)
+      for(var i = 0; i < getInstruction().size; i++) {
+        $(memory[instructionPointer + i]).addClass("highlight");
+      }
     },
     size: 1
   }
@@ -156,6 +171,9 @@ var createProgram = function(initialValues) {
     perform: function(){
       if(lastInput() === "0") {
         updateIP(getInstructionToken(1))
+        for(var i = 0; i < getInstruction().size; i++) {
+          $(memory[instructionPointer + i]).addClass("highlight");
+        }
       } else {
         updateIP(instructionPointer + this.size)
       }

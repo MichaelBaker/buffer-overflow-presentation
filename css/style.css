@@ -31,6 +31,11 @@ td.address {
   color: white;
 }
 
+.tertiary-highlight {
+  background-color: yellow;
+  color: black;
+}
+
 .step-button {
   position: absolute;
   left:     190px;
